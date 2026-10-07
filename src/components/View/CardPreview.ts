@@ -1,25 +1,13 @@
-import { Card } from './Card';
+import { CardWithImage } from './CardWithImage';
 import { TCardPreview } from '../../types';
 import { ensureElement } from '../../utils/utils';
 
-export class CardPreview extends Card<TCardPreview> {
-    protected imageElement: HTMLImageElement;
-    protected categoryElement: HTMLElement;
+export class CardPreview extends CardWithImage<TCardPreview> {
     protected descriptionElement: HTMLElement;
     protected buttonElement: HTMLButtonElement;
 
     constructor(container: HTMLElement, onClick: () => void) {
         super(container);
-
-        this.imageElement = ensureElement<HTMLImageElement>(
-            '.card__image',
-            container
-        );
-
-        this.categoryElement = ensureElement<HTMLElement>(
-            '.card__category',
-            container
-        );
 
         this.descriptionElement = ensureElement<HTMLElement>(
             '.card__text',
@@ -32,14 +20,6 @@ export class CardPreview extends Card<TCardPreview> {
         );
 
         this.buttonElement.addEventListener('click', onClick);
-    }
-
-    set image(value: string) {
-        this.setCardImage(this.imageElement, value);
-    }
-
-    set category(value: string) {
-        this.setCategory(this.categoryElement, value);
     }
 
     set description(value: string) {
