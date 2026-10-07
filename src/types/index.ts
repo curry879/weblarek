@@ -37,3 +37,56 @@ export interface IOrderResponse {
     id: string;
     total: number;
 }
+
+export interface IPage {
+    catalog: HTMLElement[];
+    counter: number;
+}
+
+export interface IModal {
+    content: HTMLElement;
+}
+
+export type TCard = Pick<IProduct, 'title' | 'price'>;
+
+export type TCardCatalog = Pick<
+    IProduct,
+    'title' | 'price' | 'image' | 'category'
+>;
+
+export type TCardPreview = Pick<
+    IProduct,
+    'title' | 'price' | 'image' | 'category' | 'description'
+> & {
+    buttonText: string;
+    disabled: boolean;
+};
+
+export type TCardBasket = TCard & {
+    index: number;
+};
+
+export interface IBasketView {
+    items: HTMLElement[];
+    total: number;
+}
+
+export interface IFormState {
+    valid: boolean;
+    errors: string;
+}
+
+export type TOrderForm = Pick<IBuyer, 'address'> & {
+    payment: TPayment | null;
+};
+
+export type TContactsForm = Pick<IBuyer, 'email' | 'phone'>;
+
+export type TSuccess = Pick<IOrderResponse, 'total'>;
+
+export type TProductEvent = Pick<IProduct, 'id'>;
+
+export interface IFieldChange<T = string> {
+    field: string;
+    value: T;
+}
